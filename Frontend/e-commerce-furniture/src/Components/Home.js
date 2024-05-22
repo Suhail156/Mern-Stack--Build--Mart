@@ -24,7 +24,7 @@ const Home = () => {
       {Homeimage.map((item)=>(
              <div >
               <Card style={{ width: '28rem',marginLeft:'120px',marginTop:'30px'}}>
-      <Card.Img variant="top" src={item.img} onClick={()=>nav(`/${item.type}`)} />
+      <Card.Img variant="top" src={item.image} onClick={()=>nav(`/${item.category}`)} />
       <Card.Body>
            
         

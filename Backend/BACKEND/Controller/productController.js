@@ -5,7 +5,7 @@ export const viewProduct=async(req,res)=>{
     const product=await Products.find()
     // console.log(product);
     if(!product){
-       return res.status(404).json({meassge:"unable to get products"})
+       return res.status(401).json({meassge:"unable to get products"})
     }
    return res.status(200).json({status:"success",message:"successfully fetched data",data:product})
 }

@@ -1,6 +1,6 @@
 export const Furnituredummy=[{
     id:1,
-    img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29mYXxlbnwwfHwwfHx8MA%3D%3D',
+    image:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29mYXxlbnwwfHwwfHx8MA%3D%3D',
     title:'Green Sofa',
     price:20000,
     type:'sofa',
@@ -9,7 +9,7 @@ export const Furnituredummy=[{
 },
 {
     id:2,
-    img:'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D',
+    image:'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mYXxlbnwwfHwwfHx8MA%3D%3D',
     title:'Brown Sofa',
     price:24000,
     type:'sofa'
@@ -204,27 +204,27 @@ export const Furnituredummy=[{
 export const Homeimage=[{
     
         id:1,
-        img:'https://images.unsplash.com/photo-1611967164521-abae8fba4668?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D',
+        image:'https://images.unsplash.com/photo-1611967164521-abae8fba4668?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D',
         title:'Sofa',
         type:'sofa'
     },
  
     {
         id:2,
-        img:'https://images.unsplash.com/photo-1664310709603-033deec18533?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg4fHxtYXR0cmVzc3xlbnwwfHwwfHx8MA%3D%3D',
+        image:'https://images.unsplash.com/photo-1664310709603-033deec18533?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg4fHxtYXR0cmVzc3xlbnwwfHwwfHx8MA%3D%3D',
         title:'Mattress',
         type:'matresess'
     },
     {
         id:3,
-        img:'https://images.unsplash.com/photo-1534357808625-fdbecdd0b6da?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGxpZ2h0JTIwYnVsYnxlbnwwfHwwfHx8MA%3D%3D',
+        image:'https://images.unsplash.com/photo-1534357808625-fdbecdd0b6da?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGxpZ2h0JTIwYnVsYnxlbnwwfHwwfHx8MA%3D%3D',
         title:'Decor',
         type:'lamps'
     },
-    ,
+    
     {
         id:4,
-        img:'https://images.unsplash.com/photo-1600988718533-57e010d001d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
+        image:'https://images.unsplash.com/photo-1600988718533-57e010d001d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fGhvbWUlMjBkZWNvcnxlbnwwfHwwfHx8MA%3D%3D',
         title:'Decor',
         type:'decor'
     }

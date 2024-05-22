@@ -1,46 +1,65 @@
-import React, { useContext,useRef } from "react"
+import React, { useContext,useRef, useState } from "react"
 import { Link,useNavigate } from "react-router-dom"
 import { User } from "../App"
+import axios from "axios"
 
 
 const Login = () => {
     const{data,use,setuse, setdata}=useContext(User)
-     const inputref=useRef(null)
+    //  const inputref=useRef(null)
     const nav=useNavigate()
-     
+     const[email,setEmail]=useState('')
+     const[password,setPassword]=useState('')
+        const submithandler=async(e)=>{
+          e.preventDefault()
+          try {
+            const response=await axios.post('http://localhost:9025/api/users/login',{
+              email,password
+            })
+            if(response.status===200){
+              console.log(response.data);
+              nav('/')
+            }
+          } catch (error) {
+            console.log(error.response.data.message);
+          }
+         
+        }
 
-     const submit= (e)=>{
-      e.preventDefault()
-          let name=inputref.current.name.value
-          let password=inputref.current.password.value
 
-           let userdata=data.find((item)=>item.name==name&&item.password==password)
-           if(name=='suhail'&&password==1234){
-              nav('/admin')
-           }
 
-           if(userdata)
-         {
-            setuse(userdata)
-            nav('/') 
+    //  const submit= (e)=>{
+    //   e.preventDefault()
+    //       let name=inputref.current.name.value
+    //       let password=inputref.current.password.value
+
+    //        let userdata=data.find((item)=>item.name==name&&item.password==password)
+    //        if(name=='suhail'&&password==1234){
+    //           nav('/admin')
+    //        }
+
+    //        if(userdata)
+    //      {
+    //         setuse(userdata)
+    //         nav('/') 
         
           
-          }
-     }
-     console.log(use)
+    //       }
+    //  }
+    //  console.log(use)
   return (
     <div style={{height:"100vh", width:"100%", display:"flex", justifyContent:"center", alignItems:"center"} } >
    <div style={{width:'400px',height:"400px" ,border:"1px solid black", padding:"40px", borderRadius:"20px"}}>
-   <form ref={inputref} onSubmit={(e)=>submit(e)}>
+   <form  onSubmit={submithandler}>
  
   <div class="form-outline mb-4">
-    <input type="name" id="form2Example1" class="form-control" name='name' />
-    <label class="form-label" for="form2Example1">User Name</label>
+    <input type="name" id="form2Example1" class="form-control" onChange={(e)=>setEmail(e.target.value)} />
+    <label class="form-label" for="form2Example1">Email</label>
   </div>
 
 
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" name='password' required />
+    <input type="password" id="form2Example2" class="form-control" onChange={(e)=>setPassword(e.target.value)}  />
     <label class="form-label" for="form2Example2">Password</label>
   </div>
 
@@ -60,7 +79,7 @@ const Login = () => {
   </div>
 
 
-  <button type="button" class="btn btn-primary btn-block mb-4" onClick={(e)=>submit(e)}>Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4" >Sign in</button>
 
 
   <div class="text-center">

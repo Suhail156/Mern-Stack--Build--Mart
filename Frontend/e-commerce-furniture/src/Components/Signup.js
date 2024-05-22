@@ -1,26 +1,47 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { User } from '../App'
-
+import axios from 'axios'
+// import { Nav } from 'react-bootstrap'
  
 const Signup = () => {
     const{data,setdata}=useContext(User)
     const inputref=useRef()
       
-     const submithandler=()=>{
-      let username=inputref.current.username.value
-      let email=inputref.current.email.value
-      let password=inputref.current.password.value
-      let repassword=inputref.current.repassword.value
-        if(password===repassword){
-          setdata([...data,{name:username,email:email,password:password,cart:[]}])
-          nav('/login')
-        }else{
-          alert('sorry password is not match')
-        }
-     }
- console.log(data);
-   const nav=useNavigate()
+//      const submithandler=()=>{
+//       let username=inputref.current.username.value
+//       let email=inputref.current.email.value
+//       let password=inputref.current.password.value
+//       let repassword=inputref.current.repassword.value
+//         if(password===repassword){
+//           setdata([...data,{name:username,email:email,password:password,cart:[]}])
+//           nav('/login')
+//         }else{
+//           alert('sorry password is not match')
+//         }
+//      }
+//  console.log(data);
+//    const nav=useNavigate()
+      const[username,setUsername]=useState('')
+      const[email,setEmail]=useState('')
+      const[password,setPassword]=useState('')
+        const nav=useNavigate()
+      const handlesubmit=async(e)=>{
+         e.preventDefault()
+         try {
+          const response=await axios.post('http://localhost:9025/api/users/signup',{
+            username,email,password
+          })
+          console.log(response);
+          if(response.status===201){
+            console.log(response.data);
+            nav('/login')
+          }
+         } catch (error) {
+          alert(error.response.data.message)
+         }
+      }
+    
   return (
     <div>
    <section>
@@ -34,12 +55,12 @@ const Signup = () => {
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form class="mx-1 mx-md-4" ref={inputref} onSubmit={submithandler}>
+                <form class="mx-1 mx-md-4"  onSubmit={handlesubmit}>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" pattern='[A-Za-z]*' minLength={3}  maxLength={16} name='username' required />
+                      <input type="text" id="form3Example1c" class="form-control"  onChange={(e)=>setUsername(e.target.value)}  />
                       <label class="form-label" for="form3Example1c">Your Name</label>
                     </div>
                   </div>
@@ -47,7 +68,7 @@ const Signup = () => {
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control"  required name='email'/>
+                      <input type="email" id="form3Example3c" class="form-control" onChange={(e)=>setEmail(e.target.value)} />
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -55,7 +76,7 @@ const Signup = () => {
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" required  pattern='[a-zA-Z0-9]*' minLength={4}  class="form-control" name='password' />
+                      <input type="password" id="form3Example4c"   class="form-control" onChange={(e)=>setPassword(e.target.value)} />
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
@@ -63,7 +84,7 @@ const Signup = () => {
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" required pattern='[a-zA-Z0-9]*' class="form-control" name='repassword' />
+                      <input type="password" id="form3Example4cd"  class="form-control"  />
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>

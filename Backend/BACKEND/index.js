@@ -6,13 +6,17 @@ import authRouter from './Routes/routes.js';
 // import bodyParser from 'body-parser';
 import adminRouter from './Routes/adminRoute.js';
 import productRouter from './Routes/productRoute.js';
+import cors from 'cors'
 
 
 dotenv.config();
 
 // Create Express app
 const app = express();
-
+app.use(cors({
+  origin:"http://localhost:3000",
+  credentials:true
+}))
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
