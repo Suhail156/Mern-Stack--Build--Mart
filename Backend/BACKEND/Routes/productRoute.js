@@ -8,12 +8,12 @@ import TrycatchMiddleware from '../Middlewares/tryCatchMiddleware.js'
 
 const router=express.Router()
 //products 
-router.use(verifytoken)
 
 router.get("/products",TrycatchMiddleware(viewProduct))
 router.get("/products/:id",TrycatchMiddleware(productById))
 router.get("/products/category/:categoryname",TrycatchMiddleware(productByCategory))
 
+router.use(verifytoken)
  //cart 
  router.post("/:userid/cart/:productid",TrycatchMiddleware(addToCart))
  router.get("/:id/cart",TrycatchMiddleware(viewCart))   

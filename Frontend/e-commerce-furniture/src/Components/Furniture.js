@@ -7,23 +7,17 @@ import axios from 'axios';
 
 const Furniture = () => {
     const {type} =useParams()
-    const{dummy,search}=useContext(User)
+    const{search}=useContext(User)
     const[product,setProduct]=useState([])
     const nav=useNavigate()
        
     useEffect(() => {
-      const fetchProducts = async () => {
-        try {
-          const response = await axios.get('http://localhost:9025/api/users/products');
-          setProduct(response.data);
-        } catch (error) {
-          console.error("Error fetching products:", error); 
-        }
-      };
-      fetchProducts();
-    }, []); // Empty dependency array means this runs only once after the initial render
-  
-    console.log(product, "hi");
+       const fetchProducts = async () => {
+            const response = await axios.get("http://localhost:9025/api/users/products")
+              setProduct(response.data.data)
+       }
+       fetchProducts()
+    }, [])
   
     const filteredProducts = product.filter((product) => product.category === type);
     console.log(filteredProducts);
