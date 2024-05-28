@@ -6,34 +6,36 @@ import Navbar from 'react-bootstrap/Navbar';
 import { FaUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { User } from './App';
 import { RiLogoutCircleRLine } from "react-icons/ri";
+import axios from 'axios';
+import { userConfig } from './Token/Config';
 
 
 function CustomNavbar() {
     
 const nav=useNavigate()
-const{dummy,search,setsearch,use,setuse}=useContext(User)
+const{setsearch}=useContext(User)
+const[data,setData]=useState([])
    
- const searchedinput=(e)=>{
+ const searchedinput=async(e)=>{
         e.preventDefault()
         let searching = e.target[0].value
       
-        console.log(searching);
-        console.log(dummy); 
-            let searched = dummy.filter((x)=>x.title.includes(searching))
+             const response=await axios.get(`http://localhost:9025/api/users/products`,userConfig)
+              console.log(response.data.data,'product');
+               setData(response.data.data)
+            let searched = data.filter((x)=>x.title.includes(searching))
             console.log(searched);
             if(searched[0]!==undefined){
                 setsearch(searched)
                 nav('/furniture')
 
             }
-            else{
-                alert("item not found")
-            }
-        
  }
+
+ console.log(data,"pro");
  const logout =()=>{
      localStorage.clear()
      nav('/')

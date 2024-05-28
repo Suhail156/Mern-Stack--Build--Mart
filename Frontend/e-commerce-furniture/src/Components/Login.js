@@ -19,7 +19,7 @@ const Login = () => {
             if(response.status===200){
               console.log(response.data);
               const token=response.data.token
-              // const refreshtoken=response.data.refreshToken
+              const refreshToken=response.data.refreshToken
               const id=response.data.rest._id
               const name=response.data.rest.username
             
@@ -27,7 +27,8 @@ const Login = () => {
               localStorage.setItem("name",name)
               localStorage.setItem( "id",id)
               console.log(token,"token");
-
+              localStorage.setItem("refresh_token",refreshToken)
+                console.log(refreshToken);
               nav('/')
             }
           } catch (error) {

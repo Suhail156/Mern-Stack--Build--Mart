@@ -8,18 +8,18 @@ import TrycatchMiddleware from '../Middlewares/tryCatchMiddleware.js'
 
 const router=express.Router()
 //products 
-router.use(verifytoken)
 
+router.use(verifytoken)
 router.get("/products",TrycatchMiddleware(viewProduct))
 router.get("/products/:id",TrycatchMiddleware(productById))
 router.get("/products/category/:categoryname",TrycatchMiddleware(productByCategory))
 
-//cart 
+//cart  
 router.post("/:userid/cart/:productid",TrycatchMiddleware(addToCart))
 router.get("/:id/cart",TrycatchMiddleware(viewCart))   
 router.patch("/:userid/cart/:productid/increment",TrycatchMiddleware(addCartQuantity))
 router.patch("/:userid/cart/:productid/decrement",TrycatchMiddleware(decremntQuantity))
- router.delete("/:userId/cart/:productId/remove",TrycatchMiddleware(removeCart))
+router.delete("/:userId/cart/:productId/remove",TrycatchMiddleware(removeCart))
 //whishlist
 router.post("/:userid/wishlist/:productid",TrycatchMiddleware(addToWishlist))
 router.get("/:id/wishlist",TrycatchMiddleware(viewWishlist))

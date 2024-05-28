@@ -5,12 +5,14 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { Toast } from "react-bootstrap";
+import { userConfig } from "../Token/Config";
+import toast from "react-hot-toast";
 
 const Singlepage = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   // console.log(id, "hii");
-  const { dummy, cart, setCart, data, use } = useContext(User);
+  const { dummy, use } = useContext(User);
   const nav = useNavigate();
   let single = dummy.find((item) => item._id === id);
   console.log(dummy, "this is dummy");
@@ -21,7 +23,7 @@ const Singlepage = () => {
     
       const fetchProduct = async () => {
         try {
-          const response = await axios.get(`http://localhost:9025/api/users/products/${id}`);
+          const response = await axios.get(`http://localhost:9025/api/users/products/${id}`,userConfig);
           console.log(response, "ioeiio");
           setProduct(response.data.data);
         } catch (error) {
@@ -36,15 +38,19 @@ const Singlepage = () => {
 
   const  name= localStorage.getItem("name")
   const userid=localStorage.getItem("id")
-  console.log(use);
+  console.log(name);
+  console.log(userid,"userid");
+  // console.log(use);
   // }
-  console.log(single);
+
   const cartshow =async (id) => {
 
-      const response=await axios.post(`http://localhost:9025/api/users/${userid}/cart/${id}`)
+      const response=await axios.post(`http://localhost:9025/api/users/${userid}/cart/${id}`,{},userConfig)
+      console.log(response);
       if(response.status===200){
+        toast.success(response.data.message)
         console.log(response.data);
-      
+        
       }
   };
    

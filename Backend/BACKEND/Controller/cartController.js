@@ -9,7 +9,8 @@ export const addToCart = async (req, res) => {
 
     const userId = req.params.userid;
     const productId = req.params.productid;
-
+       console.log(userId);
+       console.log(productId);
     // Find user by id
     const user = await User.findById(userId);
     if (!user) {

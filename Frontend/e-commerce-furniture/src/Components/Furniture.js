@@ -4,16 +4,17 @@ import Card from 'react-bootstrap/Card';
 import { User } from '../App';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { userConfig } from '../Token/Config';
 
 const Furniture = () => {
     const {type} =useParams()
     const{search}=useContext(User)
     const[product,setProduct]=useState([])
     const nav=useNavigate()
-       
+       console.log(userConfig);
     useEffect(() => {
        const fetchProducts = async () => {
-            const response = await axios.get("http://localhost:9025/api/users/products")
+            const response = await axios.get("http://localhost:9025/api/users/products",userConfig)
               setProduct(response.data.data)
        }
        fetchProducts()

@@ -17,6 +17,7 @@ import {
   MDBCol
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
+import { userConfig } from '../Token/Config';
 
 const Cart = () => {
     
@@ -33,7 +34,7 @@ const Cart = () => {
        
          useEffect(()=>{
           const fetchProduct=async ()=>{
-            const response=await axios.get(`http://localhost:9025/api/users/${userId}/cart`) 
+            const response=await axios.get(`http://localhost:9025/api/users/${userId}/cart`,userConfig) 
             setCartProduct(response.data)
           }
           fetchProduct()
@@ -50,7 +51,7 @@ const Cart = () => {
       const increment=async(id)=>{
         console.log(id,"iddd");
         try {
-          const response=await axios.patch(`http://localhost:9025/api/users/${userId}/cart/${id}/increment`)
+          const response=await axios.patch(`http://localhost:9025/api/users/${userId}/cart/${id}/increment`,{},userConfig)
             console.log(response.data,"increment")
         } catch (error) {
           console.log(error);
@@ -59,7 +60,7 @@ const Cart = () => {
       //decrement
       const decrement=async(id)=>{
       try {
-        const response=await axios.patch(`http://localhost:9025/api/users/${userId}/cart/${id}/decrement`)
+        const response=await axios.patch(`http://localhost:9025/api/users/${userId}/cart/${id}/decrement`,{},userConfig)
           console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -69,12 +70,13 @@ const Cart = () => {
       
        const deletehandler=async(id)=>{
         // const filterdata=use.cart.filter((item)=>item.id !== parseInt(id))
+        window.location.reload()
          console.log(id,"iddddd");
         // use.cart = filterdata
         try {
-             const response=await axios.delete(`http://localhost:9025/api/users/${userId}/cart/${id}/remove`)
+             const response=await axios.delete(`http://localhost:9025/api/users/${userId}/cart/${id}/remove`,userConfig)
                console.log(response.data,"hiifg");
-
+           
         } catch (error) {
           console.log(error);
         }
@@ -87,7 +89,7 @@ const Cart = () => {
   
         
   
-        const response =await axios.post(`http://localhost:9025/api/users/${userId}/payment`,{})
+        const response =await axios.post(`http://localhost:9025/api/users/${userId}/payment`,{},userConfig)
         const url=response.data.url
         const confirmation = window.confirm("payment gateway is redirecting do you want to continue")
         if(confirmation)window.location.replace(url)
@@ -128,7 +130,6 @@ const Cart = () => {
           </MDBCardText> */}
           <Button  onClick={()=>increment(single.productId._id)}>+</Button>
              <Button  onClick={()=>decrement(single.productId._id)}>-</Button>
-            <Button  variant="primary" onClick={()=>handlepay(userId)}>Payment</Button>
           <br/> <br/>
           <Button className='bg-danger' onClick={()=>deletehandler(single.productId._id)}>Remove</Button>
         </MDBCardBody>
@@ -143,8 +144,9 @@ const Cart = () => {
                   0
                 )}
               </h1></div>
+<Button  variant="primary" onClick={()=>handlepay(userId)}>Payment</Button>
   </div>
  )
- }
+}
  export default Cart
  

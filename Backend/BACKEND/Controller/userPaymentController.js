@@ -93,6 +93,8 @@ export const success = async (req, res) => {
       totalPrice: session.amount_total / 100,
     });
 
+    const StripeOrderId = order.orderId;
+    const TotalPrice = order.totalPrice;
     const orderId = order._id;
 
     const userUpdate = await User.findOneAndUpdate(
@@ -111,7 +113,7 @@ export const success = async (req, res) => {
     // Remove all items from user's cart after successful payment
     await Cart.deleteMany({ _id: { $in: cartItems.map(item => item._id) } });
 
-   return res.status(200).json({ message: "Payment successful" });
+   return res.status(200).json({ message: "Payment successful",orderId:StripeOrderId,totalPrice:TotalPrice });
  
 };
 
