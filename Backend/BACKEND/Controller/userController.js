@@ -58,12 +58,12 @@ export const login=async(req,res)=>{
    return res.status(401).json({error:"Wrong credential"})
    }
    //jwt
-   const token=Jwt.sign({id:uservalid._id},process.env.USER_SECRET_TOKEN,{expiresIn:"25m"})
+   const token=Jwt.sign({id:uservalid._id},process.env.USER_SECRET_TOKEN,{expiresIn:"1m"})
    const{password:hashedPassword, ...rest}=uservalid._doc
   //  const expirydate=new Date(Date.now() +60 * 20)
   const refreshToken=Jwt.sign({id:uservalid._id},process.env.REFRESH_ACCESS_TOKEN)
    //cookie
    res.cookie("access_token",token,{httpOnly:true})
    res.cookie("refresh_token",refreshToken,{httpOnly:true})  
-   return res.status(200).json({ message: "successfully login", data: rest });
+   return res.status(200).json({ message: "successfully login", rest: rest,token:token });
 }

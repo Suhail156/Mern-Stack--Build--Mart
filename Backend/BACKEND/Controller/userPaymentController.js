@@ -48,7 +48,7 @@ export const payment = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "https://example.com/success", // Replace with actual success URL
+      success_url: "http://localhost:3000/paymentsuccess", // Replace with actual success URL
       cancel_url: "https://example.com/cancel", // Replace with actual cancel URL
     });
   

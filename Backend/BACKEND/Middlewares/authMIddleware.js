@@ -26,7 +26,7 @@ export const verifytoken = (req, res, next) => {
                         }
 
                         // Assuming uservalid is defined and represents the user data
-                        const newToken = Jwt.sign({ id: decoded.id }, process.env.USER_SECRET_TOKEN, { expiresIn: "10m" });
+                        const newToken = Jwt.sign({ id: decoded.id }, process.env.USER_SECRET_TOKEN, { expiresIn: "1m" });
                         res.cookie("authorization", newToken);
                         req.id = decoded.id;
                         return next();

@@ -35,9 +35,12 @@ const{dummy,search,setsearch,use,setuse}=useContext(User)
         
  }
  const logout =()=>{
-    setuse(null)
-    nav('/')
+     localStorage.clear()
+     nav('/')
  }
+
+  const name=localStorage.getItem("name")
+  console.log(name);
 
     return (
         <div style={{}}>
@@ -64,17 +67,18 @@ const{dummy,search,setsearch,use,setuse}=useContext(User)
                                 navbarScroll 
                             > 
                                 <Nav.Link style={{color:'white'}}  >
-                                    {!use?<FaUser onClick={()=>nav('/login')} />:
+                                    {!name?<FaUser onClick={()=>nav('/login')} />:
                                     <><RiLogoutCircleRLine onClick={logout} />
-                                    <span>{use?.name}</span></>}</Nav.Link>
-                                <Nav.Link style={{color:'white'}} onClick={()=>nav(use?`/cart`:'/login')} ><FaShoppingCart /></Nav.Link>
+                                    <span style={{color:'white'}}>{name}</span></>}</Nav.Link>
+                                <Nav.Link style={{color:'white'}} onClick={()=>nav(name?`/cart`:'/login')} ><FaShoppingCart /></Nav.Link>
                             </Nav>
+                                <Nav.Link style={{color:'white'}} onClick={()=>nav('/adminlogin')} ><FaUser /></Nav.Link>
 
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </div>
-            <div style={{marginLeft:'400px'}} >
+            <div style={{marginLeft:'400px'}} > 
                 <Container >
 
                     <Nav className="me-auto "  >

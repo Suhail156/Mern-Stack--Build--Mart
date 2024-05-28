@@ -35,7 +35,7 @@ const Furniture = () => {
         </Card.Text>
         <Card>₹{item.price}</Card>
         {/* <Button   variant="primary">Buy Now</Button> */}
-        <Button   variant="primary" onClick={()=>nav(`/${item.category}/${item.id}`)}>Show</Button>
+        <Button   variant="primary" onClick={()=>nav(`/${item.category}/${item._id}`)}>Show</Button>
       </Card.Body>
     </Card>
          </div>

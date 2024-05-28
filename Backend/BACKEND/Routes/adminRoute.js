@@ -11,7 +11,6 @@ const router=express.Router()
 //login
 router.post("/login",TrycatchMiddleware(adminLogin))
 
-router.use(adminToken)
 //admin
 router.get("/viewalluser",TrycatchMiddleware(viewAllusers))
 router.get("/users/:id",TrycatchMiddleware(userGetById))
@@ -20,7 +19,7 @@ router.delete("/:userId/unblock",TrycatchMiddleware(unBlockUserById))
 
 
 //product
-router.post("/createProducts",imageUpload,TrycatchMiddleware(createProducts))
+router.post("/createProducts",imageUpload,(createProducts))
 router.get("/:productid/product",TrycatchMiddleware(getByIdProduct))  
 router.get("/:categoryname/products",TrycatchMiddleware(productByCategory))
 router.get("/allproducts",TrycatchMiddleware(viewProducts))
@@ -30,4 +29,5 @@ router.delete("/:productid/delete",TrycatchMiddleware(deleteProduct))
 //order
 router.get("/allorders",TrycatchMiddleware(allOrders))
 router.get("/status",TrycatchMiddleware(status))
+router.use(adminToken)
 export default router

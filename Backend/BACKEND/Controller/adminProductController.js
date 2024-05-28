@@ -2,29 +2,39 @@ import Products from "../Models/productSchema.js";
 import productJoi from "../Validation/productValidation.js";
 
 export const createProducts = async (req, res) => {
-    const { error, value } = productJoi.validate(req.body);
-    if (error) {
+  const { error, value } = productJoi.validate(req.body);
+  if (error) {
       return res.status(400).json({
-        status: "error",
-        message: error.message,
+          status: "error",
+          message: error.message,
       });
-    }
-    const { title, description, price, category, image } = value;
-    const newProduct = new Products({
+  }
+  const { title, description, price, category, image } = value;
+  
+  // Ensure that the Products model is correctly defined and accessible here
+  const newProduct = new Products({
       title: title,
       description: description,
       price: price,
       category: category,
       image: image,
-    });
-    console.log("hiubfi");
-    await newProduct.save();
-    return res.status(201).json({
-      status: "success",
-      message: "product added successfully",
-      data: newProduct,
-    });
- 
+  });
+  
+  try {
+      // Validate and save the new product to the database
+      await newProduct.save();
+      return res.status(201).json({
+          status: "success",
+          message: "product added successfully",
+          data: newProduct,
+      });
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+          status: "error",
+          message: "Error saving product to database",
+      });
+  }
 };
 
 // view all products

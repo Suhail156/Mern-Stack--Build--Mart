@@ -15,7 +15,8 @@ const Admin = () => {
           <Button onClick={()=>nav('/userside')}>Userdata</Button>
           <br/><br/>
          <Button onClick={()=>nav('/productside')}>productside</Button>
-        
+         <br/><br/>
+         <Button onClick={()=>nav('/revenue')}>status</Button>
     </div>
     
   )

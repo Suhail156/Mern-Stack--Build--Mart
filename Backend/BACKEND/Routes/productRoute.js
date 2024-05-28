@@ -8,25 +8,25 @@ import TrycatchMiddleware from '../Middlewares/tryCatchMiddleware.js'
 
 const router=express.Router()
 //products 
+router.use(verifytoken)
 
 router.get("/products",TrycatchMiddleware(viewProduct))
 router.get("/products/:id",TrycatchMiddleware(productById))
 router.get("/products/category/:categoryname",TrycatchMiddleware(productByCategory))
 
-router.use(verifytoken)
- //cart 
- router.post("/:userid/cart/:productid",TrycatchMiddleware(addToCart))
- router.get("/:id/cart",TrycatchMiddleware(viewCart))   
- router.patch("/:userid/cart/:productid/increment",TrycatchMiddleware(addCartQuantity))
- router.patch("/:userid/cart/:productid/decrement",TrycatchMiddleware(decremntQuantity))
+//cart 
+router.post("/:userid/cart/:productid",TrycatchMiddleware(addToCart))
+router.get("/:id/cart",TrycatchMiddleware(viewCart))   
+router.patch("/:userid/cart/:productid/increment",TrycatchMiddleware(addCartQuantity))
+router.patch("/:userid/cart/:productid/decrement",TrycatchMiddleware(decremntQuantity))
  router.delete("/:userId/cart/:productId/remove",TrycatchMiddleware(removeCart))
 //whishlist
 router.post("/:userid/wishlist/:productid",TrycatchMiddleware(addToWishlist))
 router.get("/:id/wishlist",TrycatchMiddleware(viewWishlist))
 router.delete("/:userid/wishlist/:productid/remove",TrycatchMiddleware(removewishlist))
-export default router   
 
 //payment
 router.post("/:userid/payment",TrycatchMiddleware(payment))
 router.get("/payment/success",TrycatchMiddleware(success))
 router.get("/:userid/orderdetails",TrycatchMiddleware(orderDetails))
+export default router   

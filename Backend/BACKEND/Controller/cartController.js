@@ -28,7 +28,7 @@ export const addToCart = async (req, res) => {
       //increment
       cartItem.quantity++;
       await cartItem.save();
-      return res.status(200).json({ message: "Product incremented in the cart" });
+      return res.status(200).json({ message: "Product incremented in the cart" ,data:cartItem});
     } else {
       // new cart
       cartItem = await Cart.create({
@@ -39,7 +39,7 @@ export const addToCart = async (req, res) => {
       // add to cart array
       user.cart.push(cartItem._id);
       await user.save();
-      return res.status(200).json({ message: "Product added to the cart" });
+      return res.status(200).json({ message: "Product added to the cart",data:cartItem });
     }
  
 };
@@ -68,7 +68,7 @@ export const addCartQuantity=async(req,res,next)=>{
   
         const userId=req.params.userid
         const productId=req.params.productid
-        const{quantityIncrement}=req.body
+        // const{quantityIncrement}=req.body
 
         //find user by id
         const user=await User.findById(userId)
@@ -86,21 +86,22 @@ export const addCartQuantity=async(req,res,next)=>{
         const cartItem =await Cart.findOne({userId:user._id,productId:product._id})
         console.log(cartItem);
         if(cartItem){
-          if(typeof quantityIncrement !=="number"){
-           return res.status(400).json({message:"bad request"})
-          }else{
-            cartItem.quantity += quantityIncrement;
+          if(product){
+            cartItem.quantity ++
             await cartItem.save()
+          
+          }else{
+           return res.status(500).json({ status: "error"}) 
           }
         }
-          return res.status(201).json({message:"quantity incremented"})
+          return res.status(201).json({message:"quantity incremented",data:cartItem})
 }
 
 export const decremntQuantity=async(req,res)=>{
 
     const userId=req.params.userid
     const productId=req.params.productid
-    const{quantityDecrement}=req.body
+    // const{quantityDecrement}=req.body  
 
     //find user by id
     const user=await User.findById(userId)
@@ -118,19 +119,16 @@ export const decremntQuantity=async(req,res)=>{
     let cartItem = await Cart.findOne({ userId: user._id, productId: product._id });
     if (cartItem) {
         // If the product already exists, decrement the quantity
-        if(typeof quantityDecrement !== "number"){
-            return res.status(400).json({message: "Bad request"})
+        if(!cartItem.quantity>1){
+            return res.status(400).json({message: "item not found"})
         }
-        if(cartItem.quantity - quantityDecrement >= 0){
-            cartItem.quantity -= quantityDecrement;
-            await cartItem.save();
+        cartItem.quantity--;
+        await cartItem.save();
         }
         else{
             cartItem.quantity = 1
             await cartItem.save();
         }
-        
-    }
    
      return res.status(201).json({ message: "Quantity decremented" });
 }
@@ -163,7 +161,7 @@ export const removeCart=async(req,res)=>{
    if(cartItemIndex !== -1){
     user.cart.splice(cartItemIndex,1)
     await user.save()
-    return res.status(200).json({message:"product removed successfully"})
+    return res.status(200).json({message:"product removed successfully",data:cartItem})
    }
    
 }

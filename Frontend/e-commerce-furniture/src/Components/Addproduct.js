@@ -1,52 +1,97 @@
-import React, { useContext, useRef } from 'react'
-import { User } from '../App'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Addproduct = () => {
-    const{dummy,setdummy}=useContext(User)
-       const inputref=useRef(null)
-         const nav=useNavigate()  
+const AddProduct = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    price: '',
+    image: null, // Note the change to handle file uploads
+    quantity: '',
+    category: '',
+  });
+  const navigate = useNavigate();
 
-         const addproduct=(e)=>{
-            e.preventDefault()
-    
-           let adtitle=inputref.current.adtitle.value
-           let adprice=inputref.current.adprice.value
-           console.log(adprice);
-          let  adimg=inputref.current.adimg.value
-          let  adqty=inputref.current.adqty.value
-          let  type=inputref.current.type.value
-             const id=dummy.length+1
-            const added={id:id,title:adtitle,price:adprice,img:adimg,qty:adqty,type:type}
-          
-              setdummy([...dummy,added])
-              nav('/productside')
+
+  const admintoken = localStorage.getItem("adminToken");
+  console.log(admintoken, "token");
+
+
+  const handleChange = (e) => {
+    console.log(e.target);
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0], // Save the file object
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const addProduct = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('title', formData.title);
+    form.append('price', formData.price);
+    form.append('image', formData.image);
+    form.append('description', formData.description);
+    form.append('category', formData.category);
+
+    try {
             
-          } 
-  return ( 
-    <div>
-        <form ref={inputref} onSubmit={addproduct}>
-                <label>Title:</label>
-                <input type='text'  name='adtitle' required/>
-                <br />
-                <label>price:</label>
-                <input type='text'  name='adprice' required/>
-                <br />
-                <label>img:</label>
-                <input type='text'  name='adimg' required />
-                <br/>
-                <label>qty:</label>
-                <input type='text'  name='adqty'required />
-                <br/>
-                
-                <label>type</label>
-                <input type='text'  name='type' required />
-                <br /><br />
-                 <input  type='submit'/>
 
-               </form>
-    </div>
-  )
-}
+      const response = await axios.post("http://localhost:9025/api/admin/createProducts", form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(response.data, 'add pr');
+      navigate('/productside');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-export default Addproduct
+  return (
+    <form onSubmit={addProduct}>
+      <input
+        name="title"
+        placeholder="Title"
+        value={formData.title}
+        onChange={handleChange}
+      />
+      <input
+        name="price"
+        placeholder="Price"
+        value={formData.price}
+        onChange={handleChange}
+      />
+      <input
+        type="file" // Change to file input
+        name="image"
+        onChange={handleChange}
+      />
+          <input
+        name="description"
+        placeholder="description"
+        value={formData.description}
+        onChange={handleChange}
+      />
+    
+       <input
+        name="category"
+        placeholder="category"
+        value={formData.category}
+        onChange={handleChange}
+      />
+      <button type="submit">Add Product</button>
+    </form>
+  );
+};
+
+export default AddProduct;

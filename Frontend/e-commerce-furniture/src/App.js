@@ -18,7 +18,9 @@ import Userside from './Components/Userside';
 import Productside from './Components/Productside';
 import Editpage from './Components/Editpage';
 import Addproduct from './Components/Addproduct';
-
+import AdminLogin from './Components/AdminLogin';
+import PaymentSuccess from './Components/paymentSuccess';
+import RevenueGenrated from './Components/RevenueGenrated';
 
  export  const User=createContext()
 function App() {
@@ -28,13 +30,19 @@ function App() {
    const[search,setsearch]=useState([])
    const[render,setrender]=useState(false)
    const[loctionauth,setlocationauth]=useState(false)
+   const[isAuthenticated,setAuthenticated]=useState(false)
   
+
+   useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    setAuthenticated(!!token); // Convert token to boolean
+  }, []);
       
       const location=useLocation()
 
 
          useEffect(()=>{
-          if(location.pathname.includes('/admin')||location.pathname.includes('/productside')||location.pathname.includes('/userside')||location.pathname.includes('/editpage')||location.pathname.includes('/addproduct')){
+          if(location.pathname.includes('/admin')||location.pathname.includes('/productside')||location.pathname.includes('/userside')||location.pathname.includes('/editpage')||location.pathname.includes('/addproduct')||location.pathname.includes("/revenue")){
             setlocationauth(true)
           }else{
             setlocationauth(false)
@@ -44,7 +52,7 @@ function App() {
   return (
     <div className="App">
       
-      <User.Provider value={{ data,setdata,dummy,setdummy,search,setsearch,use,setuse,render,setrender}}>
+      <User.Provider value={{ data,setdata,dummy,setdummy,search,setsearch,use,setuse,render,setrender,isAuthenticated,setAuthenticated}}>
      {!loctionauth&& <Navbar/>}
       <Routes>
       
@@ -61,6 +69,9 @@ function App() {
         <Route path='/productside/' element={<Productside/>}></Route>
         <Route path='/editpage/:id' element={<Editpage/>}></Route>
         <Route path='/addproduct'  element={<Addproduct/>}></Route>
+        <Route path='/adminlogin'  element={<AdminLogin/>}></Route>
+        <Route path='/paymentsuccess' element={<PaymentSuccess/>}></Route>
+        <Route path='/revenue' element={<RevenueGenrated/>}></Route>
 
       </Routes>
       <Footer/>

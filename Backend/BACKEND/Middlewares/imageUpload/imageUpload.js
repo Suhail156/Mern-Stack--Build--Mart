@@ -34,6 +34,12 @@ const imageUpload = (req, res, next) => {
             });
         }
         try {
+            if (!req.file) {
+                return res.status(400).json({
+                    status: "error",
+                    message: "No image file provided"
+                });
+            }
             const result = await cloudinary.uploader.upload(req.file.path, {
                 folder: "Profile-images"
             });
@@ -54,5 +60,6 @@ const imageUpload = (req, res, next) => {
         }
     });
 };
+
 
 export default imageUpload;
