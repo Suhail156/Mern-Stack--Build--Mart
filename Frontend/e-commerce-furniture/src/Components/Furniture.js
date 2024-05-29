@@ -14,16 +14,21 @@ const Furniture = () => {
     const nav=useNavigate()
     console.log("TYpe: ",type);
    
-       const fetchProducts = async () => {
-            const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products")
-
-              setProduct(response.data.data)
-              console.log("Response: ",response);
-       }
+       
        useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products");
+                setProduct(response.data.data);
+                console.log("Response: ", response);
+            } catch (error) {
+                console.error("Error fetching products: ", error);
+                setProduct([]); // Ensure product is an array even if there's an error
+            }
+       }
        fetchProducts()
     }, [])
-    //   console.log("product c:",product.category);
+      console.log("product c:",product.category);
     const filteredProducts = product.filter(product => product.category === type.type)
     // console.log("FP",filteredProducts);
   return (
