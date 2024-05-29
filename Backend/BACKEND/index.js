@@ -14,7 +14,7 @@ dotenv.config();
 // Create Express app
 const app = express();
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"https://mern-stack-build-mart-nqt8-8m4si7htn-muhammad-suhails-projects.vercel.app",
   credentials:true
 }))
 // Middleware for parsing JSON bodies
