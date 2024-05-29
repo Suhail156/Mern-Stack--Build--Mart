@@ -1,4 +1,3 @@
-// Import necessary modules
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -14,7 +13,7 @@ dotenv.config();
 // Create Express app
 const app = express();
 app.use(cors({
-  origin:"https://mern-stack-build-mart-nqt8-8m4si7htn-muhammad-suhails-projects.vercel.app",
+  origin:"https://mern-stack-build-mart-nqt8.vercel.app",
   credentials:true
 }))
 // Middleware for parsing JSON bodies

@@ -14,7 +14,7 @@ const Furniture = () => {
        console.log(userConfig);
     useEffect(() => {
        const fetchProducts = async () => {
-            const response = await axios.get("https://mern-stack-build-mart.vercel.app/api/users/products",userConfig)
+            const response = await axios.get("mern-stack-build-mart.vercel.app/api/users/products",userConfig)
               setProduct(response.data.data)
        }
        fetchProducts()
