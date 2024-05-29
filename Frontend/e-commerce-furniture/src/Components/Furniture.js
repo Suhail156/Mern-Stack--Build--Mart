@@ -24,7 +24,7 @@ const Furniture = () => {
     console.log(filteredProducts);
   return (
     <div className='d-flex' style={{ flexWrap:'wrap'}}>
-      {(type===undefined?search:filteredProducts).map((item)=>(
+      {filteredProducts.map((item)=>(
              <div>
               <Card style={{ width: '18rem',marginLeft:'120px',marginTop:'30px'}}>
       <Card.Img variant="top" src={item.image} />
