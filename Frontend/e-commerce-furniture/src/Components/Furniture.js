@@ -17,6 +17,7 @@ const Furniture = () => {
             try {
                 const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products", userConfig);
                 setProduct(response.data.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
             }
