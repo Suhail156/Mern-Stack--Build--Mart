@@ -23,6 +23,7 @@ const Furniture = () => {
        useEffect(() => {
        fetchProducts()
     }, [])
+    //   console.log("product c:",product.category);
     const filteredProducts = product.filter(product => product.category === type.type)
     // console.log("FP",filteredProducts);
   return (
