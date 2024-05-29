@@ -19,8 +19,8 @@ const Furniture = () => {
         const fetchProducts = async () => {
             try {
                 const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products");
-                setProduct(response.data.data);
-                console.log("Response: ", response);
+                setProduct(response)
+                // console.log("Response: ", response);
             } catch (error) {
                 console.error("Error fetching products: ", error);
                 setProduct([]); // Ensure product is an array even if there's an error
