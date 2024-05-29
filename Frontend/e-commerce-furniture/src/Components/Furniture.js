@@ -20,7 +20,7 @@ const Furniture = () => {
        fetchProducts()
     }, [])
   
-    const filteredProducts = product.filter((product) => product.category === type);
+    const filteredProducts = product?.filter((product) => product.category === type);
     console.log(filteredProducts);
   return (
     <div className='d-flex' style={{ flexWrap:'wrap'}}>
