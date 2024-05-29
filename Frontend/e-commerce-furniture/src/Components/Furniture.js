@@ -29,7 +29,7 @@ const Furniture = () => {
        fetchProducts()
     }, [])
       console.log("product c:",product.category);
-    const filteredProducts = product.filter(product => product.category === type.type)
+      const filteredProducts = product.filter(p => p.category === type?.type)
     // console.log("FP",filteredProducts);
   return (
     <div className='d-flex' style={{ flexWrap:'wrap'}}>
