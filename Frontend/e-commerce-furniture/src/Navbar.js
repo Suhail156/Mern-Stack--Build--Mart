@@ -35,14 +35,12 @@ const[data,setData]=useState([])
             }
  }
 
- console.log(data,"pro");
  const logout =()=>{
      localStorage.clear()
      nav('/')
  }
 
   const name=localStorage.getItem("name")
-  console.log(name);
 
     return (
         <div style={{}}>
