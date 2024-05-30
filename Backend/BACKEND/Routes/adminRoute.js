@@ -29,5 +29,5 @@ router.delete("/:productid/delete",TrycatchMiddleware(deleteProduct))
 //order
 router.get("/allorders",TrycatchMiddleware(allOrders))
 router.get("/status",TrycatchMiddleware(status))
-router.use(adminToken)
+router.use(adminToken)  
 export default router
