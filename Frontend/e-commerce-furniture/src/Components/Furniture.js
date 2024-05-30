@@ -12,14 +12,14 @@ const Furniture = () => {
     // const{search}=useContext(User)
     const[products,setProducts]=useState([])
     const nav=useNavigate()
-    console.log("TYpe: ",type);
    
        
     useEffect(() => {
       const fetchProducts = async () => {
           try {
               const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products");
-              setProducts(response.data); // Set product to response.data
+              setProducts(response.data.data); // Set product to response.data
+              console.log("response: ",response);
           } catch (error) {
               console.error("Error fetching products: ", error);
               setProducts([]); // Ensure product is an array even if there's an error
@@ -28,9 +28,8 @@ const Furniture = () => {
      fetchProducts();
   }, []);
   
-      console.log("product c:",products.category);
       const filteredProducts = products.filter(p => p.category === type?.type)
-    // console.log("FP",filteredProducts);
+    console.log("FP",filteredProducts);
   return (
     <div className='d-flex' style={{ flexWrap:'wrap'}}>
       {filteredProducts.map((item)=>(
