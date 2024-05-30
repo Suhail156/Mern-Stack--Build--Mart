@@ -8,8 +8,8 @@ import axios from 'axios';
 
 const Furniture = () => {
     const type = useParams()
-    console.log("Types: ",type);
-    const{search}=useContext(User)
+    console.log("Types: ",type);    
+    // const{search}=useContext(User)
     const[product,setProduct]=useState([])
     const nav=useNavigate()
     console.log("TYpe: ",type);
@@ -29,7 +29,7 @@ const Furniture = () => {
        fetchProducts()
     }, [])
       console.log("product c:",product.category);
-      const filteredProducts = product.filter(p => p.category == type?.type)
+      const filteredProducts = product.filter(p => p.category === type?.type)
     // console.log("FP",filteredProducts);
   return (
     <div className='d-flex' style={{ flexWrap:'wrap'}}>
