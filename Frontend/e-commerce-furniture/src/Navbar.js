@@ -24,7 +24,7 @@ const[data,setData]=useState([])
         let searching = e.target[0].value
       
              const response=await axios.get(`http://localhost:9025/api/users/products`,userConfig)
-              console.log(response.data.data,'product');
+              console.log(response.data.data,'products');
                setData(response.data.data)
             let searched = data.filter((x)=>x.title.includes(searching))
             console.log(searched);

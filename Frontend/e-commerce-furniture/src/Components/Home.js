@@ -21,7 +21,7 @@ const Home = () => {
       </div>
       <div className='d-flex' style={{ flexWrap: 'wrap' }}>
         {Homeimage.map((item, index) => (
-          <div key={index}> {/* Use a unique key prop */}
+          <div key={index}> 
             <Card style={{ width: '28rem', marginLeft: '120px', marginTop: '30px' }}>
               <Card.Img 
                 variant="top" 
