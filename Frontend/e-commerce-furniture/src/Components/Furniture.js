@@ -15,7 +15,7 @@ const Furniture = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://mern-stack-build-mart-nqt8.vercel.app/api/users/products", userConfig);
+        const response = await axios.get("https://backend-deploy-22gs.onrender.com/api/users/products", userConfig);
         setProducts(response.data.data || []);
       } catch (err) {
         console.error("Error fetching products: ", err);
