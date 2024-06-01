@@ -5,7 +5,7 @@ import axios from "axios"
 
 
 const Login = () => {
-    const{data,use,setuse, setdata}=useContext(User)
+    // const{data,use,setuse, setdata}=useContext(User)
     //  const inputref=useRef(null)
     const nav=useNavigate()
      const[email,setEmail]=useState('')
@@ -16,6 +16,8 @@ const Login = () => {
             const response=await axios.post('http://localhost:9025/api/users/login',{
               email,password
             })
+            console.log(email);
+            console.log(password);
             if(response.status===200){
               console.log(response.data);
               const token=response.data.token

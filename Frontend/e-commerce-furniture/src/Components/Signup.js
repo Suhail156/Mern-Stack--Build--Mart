@@ -29,12 +29,12 @@ const Signup = () => {
       const handlesubmit=async(e)=>{
          e.preventDefault()
          try {
-          const response=await axios.post('https://mern-stack-build-mart-nqt8.vercel.app/api/users/signup',{
+          const response=await axios.post('http://localhost:9025/api/users/signup',{
             username,email,password
           })
           console.log(response);
           if(response.status===201){
-            console.log(response.data);
+            console.log(response.data.data);
             nav('/login')
           }
          } catch (error) {
