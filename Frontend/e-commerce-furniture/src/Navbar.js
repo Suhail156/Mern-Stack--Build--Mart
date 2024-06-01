@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { FaUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext,  useState } from 'react';
 import { User } from './App';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import axios from 'axios';

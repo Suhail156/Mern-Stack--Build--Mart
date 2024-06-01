@@ -12,10 +12,10 @@ const Singlepage = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   // console.log(id, "hii");
-  const { dummy, use } = useContext(User);
+  // const { dummy} = useContext(User);
   const nav = useNavigate();
-  let single = dummy.find((item) => item._id === id);
-  console.log(dummy, "this is dummy");
+  // let single = dummy.find((item) => item._id === id);
+  // console.log(dummy, "this is dummy");
 
 
   //get by id

@@ -15,7 +15,7 @@ const Productside = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://backend-deploy-22gs.onrender.com/api/admin/allproducts", adminConfig);
+        const response = await axios.get("http://localhost:9025/api/admin/allproducts", adminConfig);
         setProduct(response.data.data);
         console.log(response.data, "dd");
       } catch (error) {
