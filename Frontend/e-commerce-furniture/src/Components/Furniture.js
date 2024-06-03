@@ -15,7 +15,7 @@ const Furniture = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`https://backend-deploy-22gs.onrender.com/api/users/products`);    //usrconfig
+        const response = await axios.get(`http//localhost:9025/api/users/products`);    //usrconfig
         setProducts(response.data.data || []);
       } catch (err) {
         console.error("Error fetching products: ", err);
@@ -45,8 +45,10 @@ const Furniture = () => {
             </Card.Body>
           </Card>
         </div>
+      
       ))}
     </div>
+    
   );
 };
 
