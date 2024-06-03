@@ -50,7 +50,7 @@ const Furniture = () => {
     </div>
     
   );
-  
+
 };
 
 export default Furniture;
