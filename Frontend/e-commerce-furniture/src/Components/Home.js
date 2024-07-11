@@ -24,7 +24,7 @@ const Home = () => {
           <div key={index}> 
             <Card style={{ width: '28rem', marginLeft: '120px', marginTop: '30px' }}>
               <Card.Img 
-                variant="top" 
+                variant="top"   
                 src={item.image} 
                 onClick={() => navigate(`/${item.category}`)} 
               />
@@ -42,4 +42,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default Home;  

@@ -1,6 +1,6 @@
   const token=localStorage.getItem('token')
   const refreshToken=localStorage.getItem('refresh_token')
-  const adminToken=localStorage.getItem('adminToken')
+  const adminToken=localStorage.getItem('adminToken')    
 export const userConfig={
 
     headers:{

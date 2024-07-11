@@ -62,4 +62,4 @@ const imageUpload = (req, res, next) => {
 };
 
 
-export default imageUpload;
+export default imageUpload; 

@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { User } from '../App';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { userConfig } from '../Token/Config';
+// import { userConfig } from '../Token/Config';
 
 const Furniture = () => {
   const { type } = useParams();
@@ -12,10 +12,10 @@ const Furniture = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`https://backend-deploy-22gs.onrender.com/api/users/products`);    //usrconfig
+        const response = await axios.get(`http:///api/users/products`);    //usrconfig
         setProducts(response.data.data || []);
       } catch (err) {
         console.error("Error fetching products: ", err);
@@ -42,11 +42,11 @@ const Furniture = () => {
               </Card.Text>
               <Card>₹{item.price}</Card>
               <Button variant="primary" onClick={() => navigate(`/${item.category}/${item._id}`)}>Show</Button>
-            </Card.Body>
+            </Card.Body>  
           </Card>
         </div>
       
-      ))}
+      ))} 
     </div>
     
   );

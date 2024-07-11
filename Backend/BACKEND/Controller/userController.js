@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
     if (error) {
       return res.status(400).json({status: "error"});
     }
-
+      
     const { username, image, email, password } = value;
     // console.log(value);
 
@@ -18,7 +18,7 @@ export const signup = async (req, res) => {
     const existingUser = await User.findOne({ email:email });
     if (existingUser) {
     return res.status(400).json({
-     status: "error",message: "email already taken!"});
+     status: "error",message: "email already taken!"}); 
     }
 
 

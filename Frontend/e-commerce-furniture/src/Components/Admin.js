@@ -14,7 +14,7 @@ const Admin = () => {
         <div className="mt-4">
           <Button 
             variant="dark" 
-            className="w-100 text-start mb-3" 
+            className="w-100 text-start mb-3"     
             onClick={() => navigate('/userside')}
           >
             <People className="me-2"/> User Data
